@@ -225,7 +225,7 @@ canBeDismissedByUser:(BOOL)dismissingEnabled
         {
             _iconImageView = [[UIImageView alloc] initWithImage:image];
             self.iconImageView.frame = CGRectMake(TSMessageViewPadding * 2,
-                                                  TSMessageViewPadding,
+                                                  TSMessageViewPadding * 2,
                                                   image.size.width,
                                                   image.size.height);
             [self addSubview:self.iconImageView];
@@ -342,7 +342,7 @@ canBeDismissedByUser:(BOOL)dismissingEnabled
     
     
     self.titleLabel.frame = CGRectMake(self.textSpaceLeft,
-                                       TSMessageViewPadding,
+                                       TSMessageViewPadding * 2,
                                        screenWidth - TSMessageViewPadding - self.textSpaceLeft - self.textSpaceRight,
                                        0.0);
     [self.titleLabel sizeToFit];
@@ -370,13 +370,13 @@ canBeDismissedByUser:(BOOL)dismissingEnabled
         // Check if that makes the popup larger (height)
         if (self.iconImageView.frame.origin.y + self.iconImageView.frame.size.height + TSMessageViewPadding > currentHeight)
         {
-            currentHeight = self.iconImageView.frame.origin.y + self.iconImageView.frame.size.height;
+            currentHeight = self.iconImageView.frame.origin.y + self.iconImageView.frame.size.height + TSMessageViewPadding;
         }
         else
         {
             // z-align
             self.iconImageView.center = CGPointMake([self.iconImageView center].x,
-                                                    round(currentHeight / 2.0));
+                                                    /*round(currentHeight / 2.0)*/ self.contentLabel.center.y);
         }
     }
     
